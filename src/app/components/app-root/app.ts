@@ -16,6 +16,7 @@ export class App {
   // Array preso da service
   protected service = inject(Service);
 
+  protected contacts: ContactModel[] = this.service.getContacts();
 
   // Feature Add
   protected isAdding: boolean = false;
@@ -25,7 +26,12 @@ export class App {
     this.isAdding = isAdding;
   }
 
+  /* ---- SEARCH FEATURE ---- */
+  // ricevo il search term ma non fa l'effettiva ricerca
+  onSearch(searchTerm: string): void {
 
+    this.contacts = this.service.getContactsBySearchTerm(searchTerm);
+  }
 
   /* Operazioni sui conatti dal service */
   onEdit(contact: ContactModel): void {

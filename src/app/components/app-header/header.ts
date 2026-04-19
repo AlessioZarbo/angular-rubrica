@@ -1,11 +1,21 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 
 @Component({
     selector: 'app-header',
+    imports: [FormsModule],
     templateUrl: './header.html',
     styleUrl: './header.css'
 })
 export class Header {
+
+    /* ---- SEARCH FEATURE ---- */
+    protected searchTerm: string = '';
+    @Output()
+    public inSearch: EventEmitter<string> = new EventEmitter<string>();
+    search(): void {
+        this.inSearch.emit(this.searchTerm);
+    }
 
     // Variabile instanziata a false
     private _isAdding: boolean = false;

@@ -3,9 +3,9 @@
         <img src="assets/images/its-logo.png" alt="ITS Logo">
     </div>
     <div>
-        <form action="">
-            <input type="text" placeholder="Search...">
-            <button>search</button>
+        <form>
+            <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" name="searchTerm">
+            <button (click)="search()">search</button>
         </form>
     </div>
     <div >
