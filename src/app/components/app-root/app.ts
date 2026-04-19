@@ -1,0 +1,50 @@
+import { Component, inject, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { Header } from '../app-header/header';
+import { List } from '../app-list/list';
+import { Service } from '../../../services/service';
+import { ContactModel } from '../../../models/contactModel';
+
+@Component({
+  selector: 'app-root',
+  imports: [RouterOutlet, Header, List],
+  templateUrl: './app.html',
+  styleUrl: './app.css'
+})
+export class App {
+  
+  // Array preso da service
+  protected service = inject(Service);
+
+
+  // Feature Add
+  protected isAdding: boolean = false;
+  onAdding(isAdding: boolean): void {
+
+    // console.log("Ho ricevuto empty contact" + JSON.stringify(emptyContact));
+    this.isAdding = isAdding;
+  }
+
+
+
+  /* Operazioni sui conatti dal service */
+  onEdit(contact: ContactModel): void {
+    this.service.updateContact(contact);
+  }
+
+  // Stesso pricipio di edit
+  onDelete(contact: ContactModel): void {
+
+    this.service.deleteContact(contact);
+  }
+
+  onModified(contact: ContactModel): void {
+
+    if (this.isAdding === true) {
+      
+      this.service.addContact(contact);
+    } else {
+      this.service.updateContact(contact);
+    }
+  }
+}

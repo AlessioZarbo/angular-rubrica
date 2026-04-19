@@ -1,0 +1,31 @@
+@if (model !== null && IsList === true && editContact === null) {
+    <!-- Main content -->
+    <div >
+        <div></div>
+        <div>
+            <h4>{{ model.name }} + {{ model.surname }}</h4>
+            <p>{{ model.email }} + {{ model.phone }}</p>
+        </div>
+        <div>
+            <button (click)="deleteContact()">Elimina</button>
+            <button (click)="editMode()">Modifica</button>
+        </div>
+    </div>
+} @else if (model !== null && IsList === false && editContact !== null) {
+    
+    <div >
+        <form action="">
+            <label for="name">Nome:</label>
+            <input id="name" type="text" [(ngModel)]="editContact.name" name="editContact.name"><br>
+            <label for="surname">Cognome:</label>
+            <input id="surname" type="text" [(ngModel)]="editContact.surname" name="editContact.surname"><br>
+            <label for="email">Email:</label>
+            <input id="email" type="email" [(ngModel)]="editContact.email" name="editContact.email"><br>
+            <label for="phone">Telefono:</label>
+            <input id="phone" type="text" [(ngModel)]="editContact.phone" name="editContact.phone">
+
+            <button (click)="saveEdit()">Salva</button>
+            <button (click)="cancelEdit()">Annulla</button>
+        </form>
+    </div>
+}

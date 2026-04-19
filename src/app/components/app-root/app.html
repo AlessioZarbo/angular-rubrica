@@ -1,0 +1,17 @@
+<header>
+    <app-header 
+        (inAdd)="onAdding($event)" 
+        [IsAdding]="isAdding">
+    </app-header>
+</header>
+<main>
+    <app-list 
+    (conctactModified)="onModified($event)" 
+    (inDelete)="onDelete($event)" 
+    [contacts]="service.getContacts()" 
+    [IsAdding]="isAdding" 
+    (inAdd)="onAdding($event)">
+</app-list>
+</main>
+
+<router-outlet></router-outlet>

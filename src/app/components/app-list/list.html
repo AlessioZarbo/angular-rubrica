@@ -1,0 +1,30 @@
+@if (IsAdding) {
+
+    <app-contact
+        [model]="emptyContact"
+        (conctactModified)="onModified($event)" 
+        (inEdit)="onEdit($event!)" 
+        [IsAdd]="IsAdding" 
+        [IsList]="false" 
+        (inAdd)="onAdding($event)">
+    </app-contact>
+}
+
+@if (contactInEdit === undefined) {
+
+    @for (contact of contacts; track contact) {
+
+        <app-contact 
+            [model]="contact" 
+            (inDelete)="onDelete($event!)" 
+            (inEdit)="onEdit($event!)">
+        </app-contact>   
+    }
+} @else if (contactInEdit !== undefined) {
+    <app-contact 
+        [model]="contactInEdit" 
+        (conctactModified)="onModified($event)" 
+        [IsList]="false" 
+        (inEdit)="onEdit($event!)">
+    </app-contact>   
+}
