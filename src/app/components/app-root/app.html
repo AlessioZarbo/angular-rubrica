@@ -4,6 +4,7 @@
         (inSearch)="onSearch($event)"
         [IsAdding]="isAdding"
         (inReload)="onReload($event)"
+        [inEdit]="InEdit"
     >
     </app-header>
 </header>
@@ -13,7 +14,10 @@
     (inDelete)="onDelete($event)" 
     [contacts]="this.contacts" 
     [IsAdding]="isAdding" 
-    (inAdd)="onAdding($event)">
+    (inAdd)="onAdding($event)"
+    (inEdit)="onEditing($event)"
+    >
+    
 </app-list>
 </main>
 

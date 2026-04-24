@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, input, Input, Output } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 
 @Component({
@@ -19,7 +19,6 @@ export class Header {
 
     // Variabile instanziata a false
     private _isAdding: boolean = false;
-
     // Risposta che ricevo dall' app-root
     @Input()
     public get IsAdding(): boolean {
@@ -30,6 +29,9 @@ export class Header {
 
         this._isAdding = value;
     }
+
+    @Input() 
+    public inEdit : boolean = false;
 
     // Risposta che mando all'app-root
     @Output()

@@ -19,6 +19,13 @@ export class List {
     onEdit(contact: ContactModel | undefined): void { // Così capisco quale contatto si vuole modificare
 
         this.contactInEdit = contact;
+        if (contact !== undefined) {
+
+            this.inEdit.emit(true);
+        } else {
+
+            this.inEdit.emit(false);
+        }
     }
 
 
@@ -41,6 +48,8 @@ export class List {
     @Output()
     public inAdd: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+    @Output()
+    public inEdit: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     /* ---- DELETE FEATURE ---- */
     onDelete(contact: ContactModel): void {

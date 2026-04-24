@@ -10,6 +10,13 @@
     </div>
     <div >
         <button (click)="inReloading()">refresh</button>
-        <button (click)="inAdding()">add</button>
+        @if (inEdit === true) {
+            
+            <button>add</button>
+        } @else {
+
+            <button (click)="inAdding()">add</button>
+        }
+        
     </div>
 </div>  

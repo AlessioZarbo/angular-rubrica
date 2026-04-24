@@ -16,6 +16,22 @@ export class App {
   // Array preso da service
   protected service = inject(Service);
 
+  private _inEdit: boolean = false;
+  get InEdit(): boolean {
+
+    return this._inEdit;
+  }
+  set InEdit(value: boolean) {
+
+    this._inEdit = value;
+  }
+
+
+  onEditing(isEditing: boolean): void {
+
+    this.InEdit = isEditing;
+  }
+
   protected contacts: ContactModel[] = this.service.getContacts();
 
   // Feature Add
