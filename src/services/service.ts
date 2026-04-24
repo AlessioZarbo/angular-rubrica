@@ -168,8 +168,7 @@ export class Service {
         var result = ([] as Array<ContactModel>).concat(this.contacts.filter(contact =>
 
             contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            contact.surname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            contact.email.toLowerCase().includes(searchTerm.toLowerCase())
+            contact.surname.toLowerCase().includes(searchTerm.toLowerCase())
         ))
         return result; 
     }

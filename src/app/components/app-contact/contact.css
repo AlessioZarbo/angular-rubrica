@@ -1,57 +1,170 @@
-.main {
-    margin-left: 1rem;
-    margin-top: 1rem;
-    background-color: rgb(146, 146, 254);
+:host {
+    display: block;
+}
+
+:host > div {
     display: flex;
     align-items: center;
-    height: 7rem;
-    width: 40rem;
-    padding: 0.5rem 1rem;
-    justify-content: space-between;
-    box-sizing: border-box;
     gap: 1rem;
+    padding: 1rem 1.1rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    box-shadow: var(--shadow-soft);
 }
 
-.main.edit{
-    margin-left: 1rem;
-    margin-top: 1rem;
-    background-color: rgb(146, 146, 254);
-    display: flex;
-    align-items: center;
-    height: 30rem;
-    width: 80rem;
-    padding: 0.5rem 1rem;
-    justify-content: space-between;
-    box-sizing: border-box;
-    gap: 1rem;
+:host > div > div:first-child {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d6f3f0 0%, #b9ece7 100%);
+    flex-shrink: 0;
 }
 
-.image {
+:host > div > div:first-child::after {
+    content: "";
+    display: block;
+    width: 100%;
     height: 100%;
-    width: 5rem;
-    background-color: white;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(15, 118, 110, 0.2);
 }
 
-.content {
-    height: 100%;
+:host > div > div:nth-child(2) {
     flex: 1;
-    margin: 0 1rem;
-    background-color: white;
+    min-width: 0;
 }
 
-.buttons {
-    height: 100%;
-    width: 5rem;
-    background-color: white;
+h4 {
+    margin: 0;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+p {
+    margin: 0.35rem 0 0;
+    color: var(--color-text-soft);
+    font-size: 0.92rem;
+    line-height: 1.35;
+    word-break: break-word;
+}
+
+:host > div > div:last-child {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+    gap: 0.55rem;
 }
 
-.buttons button {
-    height: 2rem;
-    width: 4rem;
+button {
+    height: 2.2rem;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    padding: 0 0.85rem;
     cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+:host > div > div:last-child button:first-child {
+    background: #fff1f2;
+    border-color: #fecdd3;
+    color: var(--color-danger);
+}
+
+:host > div > div:last-child button:last-child {
+    background: #e8f5f4;
+    border-color: #bfe7e3;
+    color: var(--color-primary-dark);
+}
+
+button:hover {
+    filter: brightness(0.98);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+:host form {
+    display: grid;
+    grid-template-columns: 130px minmax(0, 1fr);
+    align-items: center;
+    gap: 0.7rem 0.9rem;
+    width: 100%;
+    padding: 0.25rem 0;
+}
+
+:host label {
+    color: var(--color-text-soft);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+:host input {
+    height: 2.3rem;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    padding: 0 0.75rem;
+    font-size: 0.92rem;
+    color: var(--color-text);
+    background: var(--bg-surface-muted);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+:host input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.14);
+}
+
+:host form br {
+    display: none;
+}
+
+:host form button {
+    margin-top: 0.25rem;
+    width: fit-content;
+}
+
+:host form button:nth-of-type(1) {
+    grid-column: 2;
+    background: var(--color-primary);
+    color: #ffffff;
+}
+
+:host form button:nth-of-type(2) {
+    grid-column: 2;
+    justify-self: start;
+    margin-left: 6.3rem;
+    background: var(--bg-surface-muted);
+    border-color: var(--color-border);
+    color: var(--color-text-soft);
+}
+
+@media (max-width: 760px) {
+    :host > div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    :host > div > div:last-child {
+        width: 100%;
+    }
+
+    :host form {
+        grid-template-columns: 1fr;
+    }
+
+    :host form button:nth-of-type(1),
+    :host form button:nth-of-type(2) {
+        grid-column: 1;
+        margin-left: 0;
+    }
+}
+
+.test {
+    display: flex;
+    gap: 0.55rem;
+    margin-top: 0.25rem;
 }

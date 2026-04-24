@@ -42,6 +42,7 @@ export class App {
   onDelete(contact: ContactModel): void {
 
     this.service.deleteContact(contact);
+    this.contacts = this.service.getContacts();
   }
 
   onModified(contact: ContactModel): void {
@@ -49,8 +50,19 @@ export class App {
     if (this.isAdding === true) {
       
       this.service.addContact(contact);
+      this.contacts = this.service.getContacts();
     } else {
       this.service.updateContact(contact);
+      this.contacts = this.service.getContacts();
+    }
+  }
+
+  onReload(reload: boolean): void {
+
+    if (reload === true) {
+
+      console.log("Ricarico i contatti");
+      this.contacts = this.service.getContacts();
     }
   }
 }

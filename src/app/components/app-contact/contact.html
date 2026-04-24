@@ -24,8 +24,10 @@
             <label for="phone">Telefono:</label>
             <input id="phone" type="text" [(ngModel)]="editContact.phone" name="editContact.phone">
 
-            <button (click)="saveEdit()">Salva</button>
-            <button (click)="cancelEdit()">Annulla</button>
+            <div class="test">
+                <button (click)="saveEdit()">Salva</button>
+                <button (click)="cancelEdit()">Annulla</button>
+            </div>
         </form>
     </div>
 }

@@ -101,6 +101,8 @@ export class Contact {
         // this.editContact?.id = this.model?.id; 
         this.conctactModified.emit(this.model!); // Mando al padre il contatto modificato
 
+        console.log("Contatto modificato: " + JSON.stringify(this.model));
+
         if (this.IsAdd) {
 
             this.inAdd.emit(false);

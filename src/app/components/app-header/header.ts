@@ -35,9 +35,17 @@ export class Header {
     @Output()
     public inAdd: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+    @Output()
+    public inReload: EventEmitter<boolean> = new EventEmitter<boolean>();
+
     // Metodo che al click del pulsante add
     inAdding(): void {
 
         this.inAdd.emit(true);
+    }
+
+    inReloading(): void {
+
+        this.inReload.emit(true);
     }
 }
