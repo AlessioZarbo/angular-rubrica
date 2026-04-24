@@ -81,6 +81,18 @@ button {
     color: var(--color-danger);
 }
 
+:host > div > div:last-child button:first-child img {
+    width: 1.05rem;
+    height: 1.05rem;
+    display: block;
+}
+
+:host > div > div:last-child button:last-child img {
+    width: 1.05rem;
+    height: 1.05rem;
+    display: block;
+}
+
 :host > div > div:last-child button:last-child {
     background: #e8f5f4;
     border-color: #bfe7e3;

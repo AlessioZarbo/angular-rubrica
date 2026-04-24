@@ -14,8 +14,12 @@
             <p>{{ model.email }} - {{ model.phone }}</p>
         </div>
         <div>
-            <button (click)="deleteContact()">Elimina</button>
-            <button (click)="editMode()">Modifica</button>
+            <button (click)="deleteContact()">
+                <img src="icons/bin.png" alt="">
+            </button>
+            <button (click)="editMode()">
+                <img src="icons/right-arrow.png" alt="">
+            </button>
         </div>
     </div>
 } @else if (model !== null && IsList === false && editContact !== null) {

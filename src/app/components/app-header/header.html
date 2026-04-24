@@ -5,17 +5,25 @@
     <div>
         <form>
             <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" name="searchTerm">
-            <button (click)="search()">search</button>
+            <button (click)="search()">
+                <img src="icons/search.png" alt="">
+            </button>
         </form>
     </div>
     <div >
-        <button (click)="inReloading()">refresh</button>
+        <button (click)="inReloading()">
+            <img src="icons/refresh.png" alt="">
+        </button>
         @if (inEdit === true) {
             
-            <button>add</button>
+            <button>
+                <img src="icons/add.png" alt="">
+            </button>
         } @else {
 
-            <button (click)="inAdding()">add</button>
+            <button (click)="inAdding()">
+                <img src="icons/add.png" alt="">
+            </button>
         }
         
     </div>
