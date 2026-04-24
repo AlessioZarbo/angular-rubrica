@@ -57,7 +57,8 @@ export class List {
         name: '',
         surname: '', 
         email: '',
-        phone: ''
+        phone: '',
+        imgSrc: null
     };
     onModified(contact: ContactModel): void {
 

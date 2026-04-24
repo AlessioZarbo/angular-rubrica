@@ -1,10 +1,17 @@
 @if (model !== null && IsList === true && editContact === null) {
     <!-- Main content -->
     <div >
-        <div></div>
+        @if (model.imgSrc === null) {
+            <div class="contact-image"></div>
+        } @else {
+            <div class="contact-image">
+                <img src="{{ model.imgSrc }}" alt="">
+            </div>
+        }
+        
         <div>
-            <h4>{{ model.name }} + {{ model.surname }}</h4>
-            <p>{{ model.email }} + {{ model.phone }}</p>
+            <h4>{{ model.name }} {{ model.surname }}</h4>
+            <p>{{ model.email }} - {{ model.phone }}</p>
         </div>
         <div>
             <button (click)="deleteContact()">Elimina</button>

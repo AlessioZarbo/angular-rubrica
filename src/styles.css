@@ -1,7 +1,5 @@
 html, body {
     height: 100%;
     margin: 0;
-}
-main {
-    height: calc(100vh - 3rem);
+    background-color: #f4f7fb;
 }
