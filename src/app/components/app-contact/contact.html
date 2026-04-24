@@ -20,20 +20,23 @@
     </div>
 } @else if (model !== null && IsList === false && editContact !== null) {
     
-    <div >
-        <form action="">
+    <div>
+        <form (ngSubmit)="saveEdit()" #form="ngForm">
             <label for="name">Nome:</label>
-            <input id="name" type="text" [(ngModel)]="editContact.name" name="editContact.name"><br>
+            <input id="name" type="text" [(ngModel)]="editContact.name" name="name" required><br>
+
             <label for="surname">Cognome:</label>
-            <input id="surname" type="text" [(ngModel)]="editContact.surname" name="editContact.surname"><br>
+            <input id="surname" type="text" [(ngModel)]="editContact.surname" name="surname" required><br>
+
             <label for="email">Email:</label>
-            <input id="email" type="email" [(ngModel)]="editContact.email" name="editContact.email"><br>
+            <input id="email" type="email" [(ngModel)]="editContact.email" name="email" required><br>
+
             <label for="phone">Telefono:</label>
-            <input id="phone" type="text" [(ngModel)]="editContact.phone" name="editContact.phone">
+            <input id="phone" type="text" [(ngModel)]="editContact.phone" name="phone" required>
 
             <div class="test">
-                <button (click)="saveEdit()">Salva</button>
-                <button (click)="cancelEdit()">Annulla</button>
+                <button type="submit" [disabled]="form.invalid">Salva</button>
+                <button type="button" (click)="cancelEdit()">Annulla</button>
             </div>
         </form>
     </div>
