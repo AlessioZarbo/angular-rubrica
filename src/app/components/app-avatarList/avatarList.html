@@ -1,0 +1,4 @@
+@for (avatar of avatarService.getAvatars(); track avatar) {
+
+    <app-avatar [avatar]="avatar" [activeAvatarUrl]="activeAvatarUrl" (inActiveAvatarUrl)="onActive($event)"></app-avatar>
+}

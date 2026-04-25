@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, input, Output } from "@angular/core";
 import { ContactModel } from "../../../models/contactModel";
 import { FormsModule } from "@angular/forms";
+import { Avatar } from "../app-avatar/avatar";
+import { AvatarList } from "../app-avatarList/avatarList";
 
 @Component({
     selector: 'app-contact',
-    imports: [FormsModule], // Per fare NgModel
+    imports: [FormsModule, AvatarList], // Per fare NgModel
     templateUrl: './contact.html',
     styleUrl: './contact.css'
 })
@@ -59,6 +61,14 @@ export class Contact {
     public model: ContactModel | null = null;
 
     protected editContact: ContactModel | null = null;
+
+    onActiveAvatarUrlChange(newUrl: string): void {
+
+        if (this.editContact) {
+
+            this.editContact.imgSrc = newUrl;
+        }
+    }
 
 
     /* ---- IN LIST MODE ---- */

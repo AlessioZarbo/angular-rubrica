@@ -38,7 +38,9 @@
             <label for="phone">Telefono:</label>
             <input id="phone" type="text" [(ngModel)]="editContact.phone" name="phone" required>
 
-            <div class="test">
+            <app-avatarList [activeAvatarUrl]="editContact.imgSrc" (activeAvatarUrlChange)="onActiveAvatarUrlChange($event)"></app-avatarList>
+
+            <div class="buttons">
                 <button type="submit" [disabled]="form.invalid">Salva</button>
                 <button type="button" (click)="cancelEdit()">Annulla</button>
             </div>

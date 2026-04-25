@@ -1,0 +1,16 @@
+@if (avatar?.imgSrc === activeAvatarUrl) {
+
+    <button type="button" class="avatar-button" (click)="inActive()">
+        <div class="avatar active">
+            <img src="{{ avatar?.imgSrc }}" alt="">
+        </div>
+    </button>
+} @else {
+
+    <button type="button" class="avatar-button" (click)="inActive()">
+        <div class="avatar">
+            <img src="{{ avatar?.imgSrc }}" alt="">
+        </div>
+    </button>
+
+}

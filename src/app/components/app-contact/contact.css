@@ -143,6 +143,15 @@ button:active {
     display: none;
 }
 
+:host form > div {
+    grid-column: 1 / -1;
+}
+
+:host form app-avatarList {
+    grid-column: 1 / -1;
+    width: 100%;
+}
+
 :host form button {
     margin-top: 0.25rem;
     width: fit-content;
@@ -184,8 +193,9 @@ button:active {
     }
 }
 
-.test {
+.buttons {
     display: flex;
+    justify-content: flex-end;
     gap: 0.55rem;
     margin-top: 0.25rem;
 }
