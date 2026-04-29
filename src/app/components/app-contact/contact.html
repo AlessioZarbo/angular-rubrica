@@ -1,8 +1,10 @@
 @if (model !== null && IsList === true && editContact === null) {
     <!-- Main content -->
     <div >
-        @if (model.imgSrc === null) {
-            <div class="contact-image"></div>
+        @if (model.imgSrc === '' || model.imgSrc === null) {
+            <div class="contact-image">
+                <p>{{ model.name[0] }}{{ model.surname[0]}}</p>
+            </div>
         } @else {
             <div class="contact-image">
                 <img src="{{ model.imgSrc }}" alt="">
@@ -25,23 +27,61 @@
 } @else if (model !== null && IsList === false && editContact !== null) {
     
     <div>
-        <form (ngSubmit)="saveEdit()" #form="ngForm">
+        <form (ngSubmit)="saveEdit()" #contactForm="ngForm">
             <label for="name">Nome:</label>
-            <input id="name" type="text" [(ngModel)]="editContact.name" name="name" required><br>
+            <input id="name" type="text" [(ngModel)]="editContact.name" name="name" #name="ngModel" required minlength="4"><br>
+            @if (name.invalid && (name.dirty || name.touched)) {
 
+                <div [hidden]="name.valid || name.pristine" class="alert">
+                    @if (name.errors?.['required']) {
+                        Campo obbligatorio
+                    } @else if (name.errors?.['minlength']) {
+                        Il nome deve essere lungo almeno 4 caratteri
+                    }
+                </div>
+            }
             <label for="surname">Cognome:</label>
-            <input id="surname" type="text" [(ngModel)]="editContact.surname" name="surname" required><br>
+            <input id="surname" type="text" [(ngModel)]="editContact.surname" name="surname" #surname="ngModel" required minlength="4"><br>
+            @if (surname.invalid && (surname.dirty || surname.touched)) {
+
+                <div [hidden]="surname.valid || surname.pristine" class="alert">
+                    @if (surname.errors?.['required']) {
+                        Campo obbligatorio
+                    } @else if (surname.errors?.['minlength']) {
+                        Il cognome deve essere lungo almeno 4 caratteri
+                    }
+                </div>
+            }
 
             <label for="email">Email:</label>
-            <input id="email" type="email" [(ngModel)]="editContact.email" name="email" required><br>
+            <input id="email" type="email" [(ngModel)]="editContact.email" name="email" #email="ngModel" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"><br>
+            @if (email.invalid && (email.dirty || email.touched)) {
+
+                <div [hidden]="email.valid || email.pristine" class="alert">
+                    @if (email.errors?.['required']) {
+                        Campo obbligatorio
+                    } @else if (email.errors?.['pattern']) {
+                        Email non valida
+                    }
+                </div>
+            }
 
             <label for="phone">Telefono:</label>
-            <input id="phone" type="text" [(ngModel)]="editContact.phone" name="phone" required>
+            <input id="phone" type="text" [(ngModel)]="editContact.phone" name="phone" #phone="ngModel" required minlength="10" maxlength="10">
+            @if (phone.invalid && (phone.dirty || phone.touched)) {
 
-            <app-avatarList [activeAvatarUrl]="editContact.imgSrc" (activeAvatarUrlChange)="onActiveAvatarUrlChange($event)"></app-avatarList>
+                <div [hidden]="phone.valid || phone.pristine" class="alert">
+                    @if (phone.errors?.['required']) {
+                        Campo obbligatorio
+                    } @else if (phone.errors?.['minlength']) {
+                        Il telefono deve essere lungo 10 caratteri
+                    }
+                </div>
+            }
+            <app-avatarList [activeAvatarUrl]="editContact.imgSrc" (activeAvatarUrlChange)="onActiveAvatarUrlChange($event)" [contact]="editContact"></app-avatarList>
 
             <div class="buttons">
-                <button type="submit" [disabled]="form.invalid">Salva</button>
+                <button type="submit" [disabled]="contactForm.invalid">Salva</button>
                 <button type="button" (click)="cancelEdit()">Annulla</button>
             </div>
         </form>

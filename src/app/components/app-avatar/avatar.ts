@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { AvatarModel } from "../../../models/avatarModel";
+import { ContactModel } from "../../../models/contactModel";
 
 @Component({
     selector: 'app-avatar',
@@ -12,6 +13,9 @@ export class Avatar {
     public avatar: AvatarModel | null = null;
 
     @Input()
+    public contact: ContactModel | null = null;
+
+    @Input()
     public activeAvatarUrl: string | null = null;
 
     @Output()
@@ -22,6 +26,11 @@ export class Avatar {
         if (this.avatar) {
 
             this.inActiveAvatarUrl.emit(this.avatar);
+        }
+
+        if (this.contact) {
+
+            this.inActiveAvatarUrl.emit({ id: 0, imgSrc: '' });
         }
     }
 }

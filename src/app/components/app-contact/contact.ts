@@ -67,6 +67,7 @@ export class Contact {
         if (this.editContact) {
 
             this.editContact.imgSrc = newUrl;
+
         }
     }
 

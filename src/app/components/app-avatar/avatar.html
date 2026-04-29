@@ -1,16 +1,29 @@
-@if (avatar?.imgSrc === activeAvatarUrl) {
+@if (avatar?.imgSrc === activeAvatarUrl && contact === null) {
 
     <button type="button" class="avatar-button" (click)="inActive()">
         <div class="avatar active">
             <img src="{{ avatar?.imgSrc }}" alt="">
         </div>
     </button>
-} @else {
+} @else if (avatar?.imgSrc !== activeAvatarUrl && contact === null) {
 
     <button type="button" class="avatar-button" (click)="inActive()">
         <div class="avatar">
             <img src="{{ avatar?.imgSrc }}" alt="">
         </div>
     </button>
+} @else if (contact !== null && (activeAvatarUrl === '' || activeAvatarUrl === null)) {
 
+    <button type="button" class="avatar-button" (click)="inActive()">
+        <div class="avatar avatar--initials active">
+            <p>{{ contact.name[0] }}{{ contact.surname[0] }}</p>
+        </div>
+    </button>
+} @else if (contact !== null && (activeAvatarUrl !== '' && activeAvatarUrl !== null)) {
+
+    <button type="button" class="avatar-button" (click)="inActive()">
+        <div class="avatar avatar--initials">
+            <p>{{ contact.name[0] }}{{ contact.surname[0] }}</p>
+        </div>
+    </button>
 }

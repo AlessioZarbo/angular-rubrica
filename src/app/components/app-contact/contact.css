@@ -1,5 +1,6 @@
 :host {
     display: block;
+    animation: card-pop 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 :host > div {
@@ -11,6 +12,13 @@
     border: 1px solid var(--color-border);
     border-radius: 14px;
     box-shadow: var(--shadow-soft);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+:host > div:hover {
+    transform: translateY(-3px);
+    border-color: rgba(15, 118, 110, 0.18);
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.09);
 }
 
 .contact-image {
@@ -21,6 +29,21 @@
     flex-shrink: 0;
     overflow: hidden;
     position: relative;
+    display: grid;
+    place-items: center;
+    transform: translateZ(0);
+    transition: transform 0.22s ease;
+}
+
+.contact-image p {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-primary-dark);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
 .contact-image img {
@@ -73,6 +96,10 @@ button {
     font-size: 0.88rem;
     font-weight: 600;
     transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+button:hover {
+    transform: translateY(-1px) scale(1.02);
 }
 
 :host > div > div:last-child button:first-child {
@@ -131,12 +158,13 @@ button:active {
     color: var(--color-text);
     background: var(--bg-surface-muted);
     outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 :host input:focus {
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.14);
+    transform: translateY(-1px);
 }
 
 :host form br {
@@ -191,6 +219,12 @@ button:active {
         grid-column: 1;
         margin-left: 0;
     }
+
+    .alert {
+        grid-column: 1;
+        width: 100%;
+        justify-self: stretch;
+    }
 }
 
 .buttons {
@@ -198,4 +232,49 @@ button:active {
     justify-content: flex-end;
     gap: 0.55rem;
     margin-top: 0.25rem;
+}
+
+:host form {
+    animation: panel-rise 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@media (hover: hover) {
+    :host > div:hover .contact-image {
+        transform: scale(1.03);
+    }
+}
+
+.alert {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.7rem;
+    margin: 0.15rem 0 0;
+    border-radius: 999px;
+    font-size: 0.79rem;
+    font-weight: 600;
+    border: 1px solid rgba(244, 63, 94, 0.18);
+    background: rgba(255, 241, 242, 0.92);
+    color: var(--color-danger);
+    animation: alert-slide 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    grid-column: 2;
+    justify-self: end;
+    max-width: 100%;
+    line-height: 1.2;
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
+    text-align: right;
+}
+
+.alert::before {
+    content: "⚠";
+    font-size: 0.85rem;
+    line-height: 1;
+}
+
+.ng-valid[required], ng.valid {
+    border-left: 3px solid rgb(57, 131, 57);
+}
+
+.ng-invalid:not(form) {
+    border-left: 3px solid rgb(163, 58, 58);
 }
