@@ -14,6 +14,7 @@ export class Service {
             surname: "Doe",
             email: "jhondoe@example.com",
             phone: "3471122334",
+            priority: false,
             imgSrc: "avatar/maschi/tipo1.png"
         },
         {
@@ -22,6 +23,7 @@ export class Service {
             surname: "Smith",
             email: "alice.smith@example.com",
             phone: "3456789123",
+            priority: false,
             imgSrc: "avatar/femmine/tipa1.png"
         },
         {
@@ -30,6 +32,7 @@ export class Service {
             surname: "Rossi",
             email: "marco.rossi@example.com",
             phone: "3471122334",
+            priority: false,
             imgSrc: "avatar/maschi/tipo2.png"
         },
         {
@@ -38,6 +41,7 @@ export class Service {
             surname: "Bianchi",
             email: "luca.bianchi@example.com",
             phone: "3482233445",
+            priority: false,
             imgSrc: "avatar/maschi/tipo3.png"
         },
         {
@@ -46,6 +50,7 @@ export class Service {
             surname: "Verdi",
             email: "giulia.verdi@example.com",
             phone: "3493344556",
+            priority: false,
             imgSrc: "avatar/femmine/tipa1.png"
         },
         {
@@ -54,6 +59,7 @@ export class Service {
             surname: "Neri",
             email: "davide.neri@example.com",
             phone: "3504455667",
+            priority: false,
             imgSrc: "avatar/maschi/tipo4.png"
         },
         {
@@ -62,6 +68,7 @@ export class Service {
             surname: "Conti",
             email: "sara.conti@example.com",
             phone: "3515566778",
+            priority: false,
             imgSrc: "avatar/femmine/tipa2.png"
         },
         {
@@ -70,6 +77,7 @@ export class Service {
             surname: "Galli",
             email: "francesco.galli@example.com",
             phone: "3526677889",
+            priority: false,
             imgSrc: "avatar/maschi/tipo5.png"
         },
         {
@@ -78,6 +86,7 @@ export class Service {
             surname: "Ferri",
             email: "elena.ferri@example.com",
             phone: "3537788990",
+            priority: false,
             imgSrc: "avatar/femmine/tipa3.png"
         },
         {
@@ -86,6 +95,7 @@ export class Service {
             surname: "Colombo",
             email: "andrea.colombo@example.com",
             phone: "3548899001",
+            priority: false,
             imgSrc: "avatar/maschi/tipo6.png"
         },
         {
@@ -94,6 +104,7 @@ export class Service {
             surname: "Ricci",
             email: "matteo.ricci@example.com",
             phone: "3559900112",
+            priority: false,
             imgSrc: "avatar/maschi/tipo7.png"    
         },
         {
@@ -102,6 +113,7 @@ export class Service {
             surname: "Romano",
             email: "chiara.romano@example.com",
             phone: "3561011223",
+            priority: false,
             imgSrc: "avatar/femmine/tipa8.png"
         },
         {
@@ -110,6 +122,7 @@ export class Service {
             surname: "Greco",
             email: "simone.greco@example.com",
             phone: "3572122334",
+            priority: false,
             imgSrc: "avatar/maschi/tipo8.png"
         },
         {
@@ -118,6 +131,7 @@ export class Service {
             surname: "Bruno",
             email: "federica.bruno@example.com",
             phone: "3583233445",
+            priority: false,
             imgSrc: "avatar/femmine/tipa4.png"
         },
         {
@@ -126,6 +140,7 @@ export class Service {
             surname: "Moretti",
             email: "alessandro.moretti@example.com",
             phone: "3594344556",
+            priority: false,
             imgSrc: "avatar/maschi/tipo9.png"
         },
         {
@@ -134,6 +149,7 @@ export class Service {
             surname: "Lombardi",
             email: "martina.lombardi@example.com",
             phone: "3605455667",
+            priority: false,
             imgSrc: "avatar/femmine/tipa5.png"
         },
         {
@@ -142,6 +158,7 @@ export class Service {
             surname: "Rizzo",
             email: "giorgio.rizzo@example.com",
             phone: "3616566778",
+            priority: false,
             imgSrc: "avatar/maschi/tipo2.png"
         },
         {
@@ -150,6 +167,7 @@ export class Service {
             surname: "De Luca",
             email: "valentina.deluca@example.com",
             phone: "3627677889",
+            priority: false,
             imgSrc: "avatar/femmine/tipa6.png"
         },
         {
@@ -158,6 +176,7 @@ export class Service {
             surname: "Esposito",
             email: "antonio.esposito@example.com",
             phone: "3638788990",
+            priority: false,
             imgSrc: "avatar/maschi/tipo1.png"
         },
         {
@@ -166,6 +185,7 @@ export class Service {
             surname: "Fontana",
             email: "laura.fontana@example.com",
             phone: "3649899001",
+            priority: false,
             imgSrc: "avatar/femmine/tipa7.png"
         },
         {
@@ -174,6 +194,7 @@ export class Service {
             surname: "Villa",
             email: "stefano.villa@example.com",
             phone: "3650900112",
+            priority: false,
             imgSrc: "avatar/maschi/tipo3.png"
         }
     ];
@@ -181,17 +202,22 @@ export class Service {
     // GET
     getContacts(): ContactModel[] { 
 
-        return ([] as Array<ContactModel>).concat(this.contacts);
+        return this.getSortedContacts(this.contacts);
     }
 
     getContactsBySearchTerm(searchTerm: string): ContactModel[] {
 
-        var result = ([] as Array<ContactModel>).concat(this.contacts.filter(contact =>
+        var result = this.contacts.filter(contact =>
 
             contact.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             contact.surname.toLowerCase().includes(searchTerm.toLowerCase())
-        ))
-        return result; 
+        );
+        return this.getSortedContacts(result); 
+    }
+
+    private getSortedContacts(contacts: ContactModel[]): ContactModel[] {
+
+        return [...contacts].sort((first, second) => Number(second.priority) - Number(first.priority));
     }
 
     // POST

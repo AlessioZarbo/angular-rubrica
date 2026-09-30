@@ -59,6 +59,13 @@ export class List {
     @Output()
     public inDelete: EventEmitter<ContactModel> = new EventEmitter<ContactModel>();
 
+    onPriorityChanged(contact: ContactModel): void {
+
+        this.priorityChanged.emit(contact);
+    }
+    @Output()
+    public priorityChanged: EventEmitter<ContactModel> = new EventEmitter<ContactModel>();
+
 
     /* ---- MODIFY FEATURE ---- */
     protected emptyContact: ContactModel = {
@@ -67,6 +74,7 @@ export class List {
         surname: '', 
         email: '',
         phone: '',
+        priority: false,
         imgSrc: null
     };
     onModified(contact: ContactModel): void {

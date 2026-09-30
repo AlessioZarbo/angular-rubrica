@@ -16,6 +16,14 @@
             <p>{{ model.email }} - {{ model.phone }}</p>
         </div>
         <div>
+            <button
+                type="button"
+                class="priority-button"
+                (click)="togglePriority()"
+                [attr.aria-label]="model.priority ? 'Rimuovi priorità' : 'Imposta come prioritario'"
+                [title]="model.priority ? 'Rimuovi priorità' : 'Imposta come prioritario'">
+                <span aria-hidden="true">{{ model.priority ? '★' : '☆' }}</span>
+            </button>
             <button (click)="deleteContact()">
                 <img src="icons/bin.png" alt="">
             </button>

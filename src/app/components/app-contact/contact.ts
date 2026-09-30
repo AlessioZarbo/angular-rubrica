@@ -54,6 +54,9 @@ export class Contact {
     public conctactModified: EventEmitter<ContactModel> = new EventEmitter<ContactModel>();
 
     @Output()
+    public priorityChanged: EventEmitter<ContactModel> = new EventEmitter<ContactModel>();
+
+    @Output()
     public inAdd: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     // Modello che verrà stampato
@@ -88,6 +91,15 @@ export class Contact {
         if (this.model) {
 
             this.inDelete.emit(this.model);
+        }
+    }
+
+    togglePriority(): void {
+
+        if (this.model) {
+
+            this.model = { ...this.model, priority: !this.model.priority };
+            this.priorityChanged.emit(this.model);
         }
     }
 

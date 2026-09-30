@@ -17,7 +17,8 @@
         <app-contact 
             [model]="contact" 
             (inDelete)="onDelete($event!)" 
-            (inEdit)="onEdit($event!)">
+            (inEdit)="onEdit($event!)"
+            (priorityChanged)="onPriorityChanged($event)">
         </app-contact>   
     }
 } @else if (contactInEdit !== undefined) {

@@ -5,5 +5,6 @@ export interface ContactModel {
     surname: string;
     email: string;
     phone: string;
+    priority: boolean;
     imgSrc: string | null;
 }

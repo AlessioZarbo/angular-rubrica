@@ -61,6 +61,12 @@ export class App {
     this.contacts = this.service.getContacts();
   }
 
+  onPriorityChanged(contact: ContactModel): void {
+
+    this.service.updateContact(contact);
+    this.contacts = this.service.getContacts();
+  }
+
   onModified(contact: ContactModel): void {
 
     if (this.isAdding === true) {
